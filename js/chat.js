@@ -75,15 +75,9 @@ class JoullyAI {
         
         // Обработка токена из URL (после редиректа от Google)
         this.handleTokenFromUrl();
-        
-        console.log(`🤖 ${this.NAME} инициализирован!`);
-        console.log(`👤 Создатель: ${this.CREATOR}`);
-        console.log(`📡 API: ${this.API_URL}`);
+
     }
-    
-    // ============================================
-    // Обработка токена из URL
-    // ============================================
+
     handleTokenFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
@@ -97,7 +91,6 @@ class JoullyAI {
         }
         
         if (token) {
-            console.log('🔑 Получен токен из URL, восстанавливаем сессию...');
             
             // Очищаем URL
             window.history.replaceState({}, document.title, window.location.pathname);
@@ -198,7 +191,6 @@ class JoullyAI {
         this.updateAuthUI();
         this.updateWelcome();
         
-        console.log(`✅ Авторизован как: ${userData.name} (${userData.email})`);
     }
     
     async logout() {
@@ -218,7 +210,6 @@ class JoullyAI {
         this.updateWelcome();
         
         this.showNotification('Вы вышли из системы', 'info');
-        console.log('👋 Выход выполнен');
     }
     
     async checkSavedSession() {
@@ -293,7 +284,6 @@ class JoullyAI {
             welcome.innerHTML = `
                 <h3>Чем могу помочь?</h3>
                 <p>Задайте вопрос или начните новый диалог</p>
-                <div class="creator-info">🤖 ${this.NAME} · создан ${this.CREATOR}</div>
                 <div style="margin-top: 20px; font-size: 14px; color: #888;">
                     🔑 Войдите через Google, чтобы начать общение
                 </div>
@@ -425,17 +415,7 @@ class JoullyAI {
         const msg = message.toLowerCase();
         
         if (msg.includes('привет') || msg.includes('здрав')) {
-            return `Привет! 👋 Я ${this.NAME}, созданная ${this.CREATOR}. Чем могу помочь?`;
-        } else if (msg.includes('как дела') || msg.includes('как ты')) {
-            return `У меня всё отлично! 💫 Я ${this.NAME}, созданная ${this.CREATOR}. А у тебя как?`;
-        } else if (msg.includes('создатель') || msg.includes('кто тебя')) {
-            return `Меня создал талантливый разработчик ${this.CREATOR}! 🎉 Горжусь этим!`;
-        } else if (msg.includes('спасиб')) {
-            return `Всегда пожалуйста! 🤗 Я ${this.NAME}, созданная ${this.CREATOR}. Обращайся ещё!`;
-        } else if (msg.includes('пока') || msg.includes('до свидан')) {
-            return `До свидания! 👋 Была рада пообщаться. Твой ${this.NAME} от ${this.CREATOR}`;
-        } else if (msg.includes('кто ты')) {
-            return `Я ${this.NAME} - дружелюбная нейросеть, созданная ${this.CREATOR}! 🚀`;
+            return `Привет! На данный момент, сервер недоступен, следите за новостями в ТГК:@joullyai`;
         }
         
         const responses = [
